@@ -25,19 +25,16 @@ class IndexRequest extends FormRequest
     {
         return [
             'image' => 'required|image',
-            'name' => 'required|string|min:5|max:255',
+            'name' => 'required|min:5|max:255',
             'id_wp' => 'required|integer',
             'refine' => 'required',
-            'type' => 'required|string',
-            'weapon_type' => 'sometimes',
-            'weapon_element' => 'sometimes',
-            'awaken' => 'required|string',
-            'label' => 'required|string',
-            'dismantle' => 'required|string',
-            'skill_1' => 'required|string|min:5|max:255',
-            'skill_1_desc' => 'required|string|min:5|max:255',
-            'skill_2' => 'required|string|min:5|max:255',
-            'skill_2_desc' => 'required|string|min:5|max:255',
+            'type' => 'required',
+            'awaken' => 'required',
+            'label' => 'required',
+            'skill_1' => 'required|min:5|max:255',
+            'skill_1_desc' => 'required|min:5|max:255',
+            'skill_2' => 'required|min:5|max:255',
+            'skill_2_desc' => 'required|min:5|max:255',
         ];
     }
 }

@@ -10,7 +10,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $items = Index::get();
+        $items = Index::paginate(10);
 
         return view('list-item', compact('items'));
     }

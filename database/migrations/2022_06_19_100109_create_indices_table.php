@@ -25,11 +25,11 @@ return new class extends Migration
             $table->enum('weapon_element', ['electric', 'ice', 'fire', 'phisical', 'energy', 'poison'])->nullable();
             $table->enum('awaken', ['awaken', 'non_awaken']);
             $table->enum('label', ['meta', 'keep', 'lebur']);
-            $table->enum('dismantle', ['yes', 'no']);
-            $table->string('skill_1');
-            $table->string('skill_1_desc');
-            $table->string('skill_2');
-            $table->string('skill_2_desc');
+            $table->enum('dismantle', ['yes', 'no'])->nullable();
+            $table->text('skill_1');
+            $table->text('skill_1_desc');
+            $table->text('skill_2');
+            $table->text('skill_2_desc');
             $table->softDeletes();
 
             $table->timestamps();
