@@ -126,7 +126,7 @@
               ID : {{ $id_wp }}
             </div>
             <div class="col-md-3">
-              star : @for ($i = 0; $i >= $refine; $i++)
+              star : @for ($i = 0; $i <= $refine; $i++)
                 <i class="fas fa-star"></i>
               @endfor
             </div>
