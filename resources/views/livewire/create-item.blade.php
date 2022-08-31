@@ -4,9 +4,8 @@
       <form wire:submit.prevent="store" enctype="multipart/form-data">
         {{-- input gambar --}}
         <div class="row align-items-center">
-          <div class="col-auto" style="width: 200px">
-            <img src="{{ asset('assets/img/bruce-mars.jpg') }}" alt="insert image" id="display_image"
-              class="img-fluid rounded rounded-3">
+          <div class="col-auto ms-3 bg-secondary" id="display_image" wire:ignore>
+
           </div>
           <div class="col">
             <div class="form-group">
@@ -121,7 +120,7 @@
             <label for="dismantle">Dismantle</label>
             <select class="form-select" wire:model.defer="dismantle" id="dismantle"
               @if ($type == 'pet') disabled @endif>
-              <option class="d-none"></option>
+              <option class="d-none">Choose</option>
               <option value="yes">Yes</option>
               <option value="no">No</option>
             </select>

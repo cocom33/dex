@@ -17,7 +17,7 @@ class TableItem extends Component
 
     public function render()
     {
-        $items = Index::paginate(10);
+        $items = Index::paginate(5);
         return view('livewire.table-item', [
             'items' => $items,
         ]);

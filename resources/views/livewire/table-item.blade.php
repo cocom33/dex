@@ -102,7 +102,9 @@
                 </tbody>
               </table>
             </div>
-            {{ $items->links() }}
+            <div class="ms-3 mt-3">
+              {{ $items->links() }}
+            </div>
           </div>
         </div>
       </div>
@@ -113,28 +115,40 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body">
-          <div class="row align-items-center">
-            <div class="col-md-3">
-              <img src="{{ asset('storage/' . $image) }}" alt="" class="w-100">
+          <div class="d-flex align-items-center">
+            <div style="height: 150px; widht: 150px">
+              <img src="{{ asset('storage/' . $image) }}" alt="" class="h-100 m-auto">
             </div>
-            <div class="col-auto">
-              <h4 class="modal-title">{{ $name }}</h4>
+            <div class="ms-3">
+              <div class="d-flex">
+                <p>No. {{ $id_wp }}</p>
+                <h6 class="ms-3">{{ $name }}</h6>
+              </div>
+              <div class="mb-3">
+                @for ($i = 1; $i <= $refine; $i++)
+                  <i class="fas fa-star text-warning fs-5"></i>
+                @endfor
+              </div>
+              <div>
+                @if ($type == 'pet')
+                @else
+                  {{ $dismantle == 'yes' ? 'this equipment can be dismantled' : "this equipment can't be dismatled" }}
+                @endif
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-3">
-              ID : {{ $id_wp }}
+          <div class="mt-3">
+            <div class="text-warning">
+              <strong>{{ $skill_1 }}</strong>
             </div>
-            <div class="col-md-3">
-              star : @for ($i = 0; $i <= $refine; $i++)
-                <i class="fas fa-star"></i>
-              @endfor
+            <div>
+              <p>{{ $skill_1_desc }}</p>
             </div>
-            <div class="col-md-3">
-              awaken : {{ $awaken }}
+            <div class="text-warning">
+              <strong>{{ $skill_2 }}</strong>
             </div>
-            <div class="col-md-3">
-              disamble : {{ $dismantle }}
+            <div>
+              <p>{{ $skill_2_desc }}</p>
             </div>
           </div>
         </div>
