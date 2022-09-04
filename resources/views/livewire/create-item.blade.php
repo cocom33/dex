@@ -2,6 +2,12 @@
   <div class="card">
     <div class="card-body pt-4 p-3">
       <form wire:submit.prevent="store" enctype="multipart/form-data">
+        @if ($alert)
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ $alertItem }} has been added!!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif
         {{-- input gambar --}}
         <div class="row align-items-center">
           <div class="col-auto ms-3 bg-secondary" id="display_image" wire:ignore>
@@ -15,7 +21,7 @@
 
             <div class="row">
               <div class="form-group col-md-7">
-                <label for="name" class="form-control-label">{{ __('Full Name') }}</label>
+                <label for="name" class="form-control-label">Name</label>
                 <div>
                   <input class="form-control @error('name') border border-danger rounded-3 @enderror" type="text"
                     placeholder="Name" id="name" wire:model.defer="name">
@@ -184,24 +190,4 @@
         </div>
     </div>
   </div>
-
-  @push('script')
-    <script>
-      let imageSet = document.getElementById('image');
-      let displayImage = document.getElementById('display_image');
-      if (imageSet) {
-        imageSet.addEventListener("change", previewGambar);
-
-        function previewGambar() {
-          const [file] = imageSet.files;
-          displayImage.src = URL.createObjectURL(file);
-        }
-
-        // agar ketika gambar profil di klik, file upload juga langsung terbuka
-        displayImage.addEventListener("click", () =>
-          imageSet.click()
-        );
-      }
-    </script>
-  @endpush
 </div>

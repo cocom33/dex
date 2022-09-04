@@ -9,28 +9,23 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class IndexFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'image' => $this->faker->image(),
-            'id_wp' => $this->faker->id_wp(),
-            'refine' => $this->faker->refine(),
-            'type' => $this->faker->type(),
-            'weapon_type' => $this->faker->weapon_type(),
-            'weapon_element' => $this->faker->weapon_element(),
-            'awaken' => $this->faker->awaken(),
-            'label' => $this->faker->label(),
-            'dismantle' => $this->faker->dismantle(),
-            'skill_1' => $this->faker->skill_1(),
-            'skill_1_desc' => $this->faker->skill_1_desc(),
-            'skill_2' => $this->faker->skill_2(),
-            'skill_2_desc' => $this->faker->skill_2_desc(),
+            'name' => $this->faker->word(),
+            'image' => 'https://source.unsplash.com/random/150x150',
+            'id_wp' => $this->faker->unique()->randomNumber(4, false),
+            'refine' => $this->faker->randomElement(['5', '6', '7']),
+            'type' => $this->faker->randomElement(['dress', 'weapon', 'badge', 'pet']),
+            'weapon_type' => $this->faker->randomElement(['melee','pistol','throw','spray','dolly','depoy','sniper','bow','shotgun','rocket','rifle']),
+            'weapon_element' => $this->faker->randomElement(['electric','ice','fire','phisical','energy','poison']),
+            'awaken' => $this->faker->randomElement(['awaken', 'non_awaken']),
+            'label' => $this->faker->randomElement(['meta', 'keep', 'lebur']),
+            'dismantle' => $this->faker->randomElement(['yes', 'no']),
+            'skill_1' => $this->faker->word(),
+            'skill_1_desc' => $this->faker->paragraphs(2),
+            'skill_2' => $this->faker->word(),
+            'skill_2_desc' => $this->faker->paragraphs(2),
         ];
     }
 }

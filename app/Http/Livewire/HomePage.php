@@ -6,7 +6,7 @@ use App\Models\Index;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class TableItem extends Component
+class HomePage extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -14,22 +14,52 @@ class TableItem extends Component
     public $image, $name, $id_wp, $refine, $type, $awaken, $label, $dismantle;
     public $skill_1, $skill_1_desc, $skill_2, $skill_2_desc;
     public $weapon_type, $weapon_element;
-    public $search = '';
 
-    protected $listeners = ['deleteItem' => 'destroyItem'];
+    public $search = '';
+    public $filter = ['dress', 'pet', 'weapon', 'badge'];
 
     public function render()
     {
-        $items = Index::where('name', 'like', '%'.$this->search.'%')->paginate(5);
-        return view('livewire.table-item', [
+        $items = Index::whereIn('type', $this->filter)->paginate(12);
+        return view('livewire.home-page', [
             'items' => $items,
-        ]);
+        ])->extends('layouts.home')->section('content');
     }
 
-    public function updatingSearch()
+    public function semua()
     {
+        $this->filter = ['dress', 'pet', 'weapon', 'badge'];
         $this->resetPage();
     }
+
+    public function dress()
+    {
+        $this->filter = ['dress'];
+        $this->resetPage();
+    }
+
+    public function weapon()
+    {
+        $this->filter = ['weapon'];
+        $this->resetPage();
+    }
+
+    public function pet()
+    {
+        $this->filter = ['pet'];
+        $this->resetPage();
+    }
+
+    public function badge()
+    {
+        $this->filter = ['badge'];
+        $this->resetPage();
+    }
+
+    // public function updatingSearch()
+    // {
+    //     $this->resetPage();
+    // }
 
     public function showItem($item)
     {
@@ -47,19 +77,5 @@ class TableItem extends Component
         $this->skill_1_desc = $item['skill_1_desc'];
         $this->skill_2 = $item['skill_2'];
         $this->skill_2_desc = $item['skill_2_desc'];
-    }
-
-    public function deleteItem($itemId)
-    {
-        // Index::where('id', $itemId)->delete();
-        $this->id_wp = $itemId;
-
-        $item = Index::find($itemId);
-        $this->dispatchBrowserEvent('deleteConfirmation', ['item' => $item]);
-    }
-
-    public function destroyItem()
-    {
-        Index::where('id_wp', $this->id_wp)->delete();
     }
 }

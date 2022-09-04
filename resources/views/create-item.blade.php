@@ -26,9 +26,13 @@
       const reader = new FileReader();
       reader.addEventListener("load", () => {
         uploaded_image = reader.result;
-        document.querySelector("#display_image").style.backgroundImage = `url(${uploaded_image})`
+        document.querySelector("#display_image").style.backgroundImage = `url(${uploaded_image})`;
       });
       reader.readAsDataURL(this.files[0]);
     })
+
+    document.getElementById('display_image').addEventListener("click", () =>
+      image_input.click()
+    );
   </script>
 @endpush

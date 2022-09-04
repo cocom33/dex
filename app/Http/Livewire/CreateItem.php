@@ -14,6 +14,11 @@ class CreateItem extends Component
     public $image, $name, $id_wp, $refine, $type, $awaken, $label, $dismantle;
     public $skill_1, $skill_1_desc, $skill_2, $skill_2_desc;
     public $weapon_type, $weapon_element;
+    public $alert, $alertItem;
+
+    public function mount(){
+        $this->alert = false;
+    }
 
     public function render()
     {
@@ -25,7 +30,7 @@ class CreateItem extends Component
         return [
             'image' => 'required|image',
             'name' => 'required|min:5|max:255',
-            'id_wp' => 'required|integer',
+            'id_wp' => 'required|integer|unique:indices,id_wp'.$this->id_wp,
             'refine' => 'required',
             'type' => 'required',
             'awaken' => 'required',
@@ -58,6 +63,8 @@ class CreateItem extends Component
             'skill_2_desc' => $this->skill_2_desc,
         ];
         Index::create($data);
+        $this->alert = true;
+        $this->alertItem = $this->name;
 
         $this->image = null;
         $this->name = null;
